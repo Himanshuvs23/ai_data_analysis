@@ -243,10 +243,14 @@ Descriptions are optional per column, i.e. any column without an entry falls bac
 | `--dataset-name` | Yes | Display name for the dataset, used in the report. |
 | `--output-folder` | Yes | Directory where the generated report will be saved. |
 
-On completion, the pipeline prints the path to the generated report:
+On completion, the pipeline prints the path to all generated report:
 
 ```
-Report saved to: outputs/my_dataset_report.md
+Report saved to: {
+  'markdown': 'outputs/reports/space_titanic/space_titanic_report.md',
+  'notebook': 'outputs/reports/space_titanic/space_titanic_report.ipynb',
+  'model_stats': 'outputs/reports/space_titanic/space_titanic_model_stats.txt'
+}
 ```
 
 ## Future Work
