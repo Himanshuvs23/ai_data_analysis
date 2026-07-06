@@ -1,21 +1,22 @@
 # AI Data Analyst Report
 
+
 **Dataset:** Space Titanic
-**Generated:** 2026-07-06 15:32
+
+**Generated:** 2026-07-06 17:53
+
 **Rows:** 8693 | **Columns:** 14
 
 ---
 
 ## Executive Summary
- In the Space Titanic dataset comprising 8693 rows and 14 columns, data quality is generally satisfactory with only minor issues to address. The most pressing concern involves a significant number of outliers across six numerical columns, particularly in spa, foodcourt, vrdeck, shoppingmall, and roomservice, where high severity outliers account for approximately half of the total observations. These extreme values may represent heavy spenders or unusual events, necessitating careful distinction between true outliers (data errors) and natural outliers (valid extreme values).
+ In the Space Titanic dataset comprising 8693 rows and 14 columns, data quality is generally satisfactory with only minor issues. The most pressing concern involves a significant number of high severity outliers in six columns, primarily affecting roomservice, foodcourt, vrdeck, spa, and shoppingmall categories, representing substantial deviations from the norm. This suggests the presence of a small group of heavy spenders rather than data errors.
 
-Additionally, the dataset exhibits a low level of missing values across its columns, with a maximum missing percentage of 2.5%. Given the uniform distribution of these gaps, an imputation strategy could be considered to fill in the data for more comprehensive analysis.
+Another notable finding is the low level of missing values across all columns, with a maximum of 2.5%. While no sensitive or identifier columns have missing values, an imputation strategy could be considered to fill in the gaps and ensure a more complete dataset for analysis.
 
-The overall data distribution is highly right-skewed, with six out of the total six numerical columns clustered around lower values and a small number of observations having significantly higher values. This skewed distribution may mask important patterns or relationships within the data and could potentially benefit from either log transformation, standardization, or keeping the data as-is depending on the specific goals and assumptions of the analysis.
+The dataset also exhibits highly right-skewed distributions in several numerical columns, indicating that most users spend little or nothing while a small group spends significantly more. To address these issues, it may be beneficial to consider log-transforming or standardizing these highly skewed columns to better represent the data and reduce the impact of outliers.
 
-Lastly, the target column 'transported' in the dataset shows a balanced distribution with 50.4% instances labeled as 'True' and 49.6% as 'False', indicating no need for resampling or class weighting at this time to ensure fair model training.
-
-In summary, while the Space Titanic dataset is generally clean, addressing the high number of outliers in the high severity columns and considering an imputation strategy for missing values are recommended to ensure accurate and comprehensive analysis.
+Overall, the dataset presents a balanced distribution for the target column 'transported', with 50.4% instances labeled as 'True' and 49.6% as 'False'. Given the generally clean state of the data, it is recommended to address the identified outlier and skewness issues before proceeding with further analysis or modeling.
 
 ---
 
@@ -27,30 +28,88 @@ The Space Titanic dataset exhibits a low level of missing values across its 14 c
 ---
 
 ## 2. Outliers
-The data quality report reveals a significant number of outliers across six numerical columns, with high severity outliers accounting for half of the total. Specifically, five columns - spa, foodcourt, vrdeck, shoppingmall, and roomservice - exhibit high outlier percentages ranging from 21.01% to 21.86%. These findings suggest a substantial presence of extreme values that deviate significantly from the rest of the data distribution. However, it is important to note that these outliers do not necessarily indicate data errors but rather may represent a small group of heavy spenders or unusual events. In contrast, only one column - age - shows low severity outliers with an outlier percentage of 0.9%. It is crucial to distinguish between true outliers (data errors) and natural outliers (valid extreme values). To address the high number of outliers in the high severity columns, it is recommended to either cap the values at a certain threshold or apply log-transformation to normalize the data distribution. Further investigation may be necessary to understand the nature of these outliers and ensure their accuracy.
+The data quality report reveals a significant number of high severity outliers, accounting for 83.33% of the total outlier columns. Specifically, six out of the total six outlier columns are classified as high severity, indicating substantial deviations from the norm in the roomservice, foodcourt, vrdeck, spa, and shoppingmall categories. On the other hand, only one column, age, has a low severity outlier, representing a minor anomaly. The high percentage of outliers in several columns suggests the presence of a small group of heavy spenders rather than data errors, as the median values for these columns are zero. It is essential to distinguish between true outliers, which may indicate data errors, and natural outliers, representing valid extreme values. To address this issue, it would be beneficial to either cap the values at a certain threshold or apply log-transformations to normalize the distribution. Further investigation may also be necessary to ensure the accuracy of the data in high severity columns.
 
 ![Outliers](plots/outliers.png)
 
 ---
 
 ## 3. Distributions
-The numerical data distributions exhibit significant skewness, with six out of the total six numerical columns being highly right-skewed. This indicates that most values in these columns are clustered around the lower end, while a small number of observations have significantly higher values. For instance, in columns such as spa, foodcourt, vrdeck, shoppingmall, and roomservice, the mean values are substantially greater than the medians, suggesting that a minority of individuals or entities spend considerably more than the majority. This skewed distribution could potentially mask important patterns or relationships within the data. Furthermore, it is noteworthy that all columns have at least one observation with a minimum value of zero, which may indicate missing or zero-valued data in these columns. The high number of outliers and the highly skewed distributions suggest that further analysis might benefit from either log transformation, standardization, or possibly keeping the data as-is depending on the specific goals and assumptions of the analysis.
+The data analysis reveals a significant skewness in several numerical columns, indicating that the distribution of values is heavily skewed to the right. Specifically, the roomservice, foodcourt, vrdeck, spa, and shoppingmall columns exhibit highly right-skewed distributions, as evidenced by their high skewness scores and zero median values. This suggests that most users in these categories spend little or nothing, while a small group of users spend significantly more. The mean values for these columns are substantially higher than the medians, further emphasizing this trend. It is worth noting that all columns have a minimum value of zero, implying that no activity was recorded for some users in these categories. This aligns with the high outlier percentage reported in the Outliers Context section, suggesting that a significant number of users are not engaging or are not being accurately represented in these datasets. To address these issues, it may be beneficial to consider log-transforming or standardizing these highly skewed columns to better represent the data and reduce the impact of outliers.
 
-![Distributions]()
+**box_roomservice**
+
+![box_roomservice](plots/box_roomservice_vs_transported.png)
+
+**box_foodcourt**
+
+![box_foodcourt](plots/box_foodcourt_vs_transported.png)
+
+**box_vrdeck**
+
+![box_vrdeck](plots/box_vrdeck_vs_transported.png)
+
+**box_spa**
+
+![box_spa](plots/box_spa_vs_transported.png)
+
+**box_shoppingmall**
+
+![box_shoppingmall](plots/box_shoppingmall_vs_transported.png)
+
+**hist_roomservice**
+
+![hist_roomservice](plots/histogram_roomservice.png)
+
+**hist_foodcourt**
+
+![hist_foodcourt](plots/histogram_foodcourt.png)
+
+**hist_vrdeck**
+
+![hist_vrdeck](plots/histogram_vrdeck.png)
+
+**hist_age**
+
+![hist_age](plots/histogram_age.png)
+
+**hist_spa**
+
+![hist_spa](plots/histogram_spa.png)
+
+**hist_shoppingmall**
+
+![hist_shoppingmall](plots/histogram_shoppingmall.png)
+
 
 ---
 
 ## 4. Correlations
-In this analysis, there are no strong correlations present among the numerical columns, as indicated by a total of zero strong-correlated pairs and a false any_strong_correlation value. However, several notable correlations were identified that may provide insights into the data. For instance, a moderate positive correlation exists between the 'spa' and 'age' columns, suggesting that older individuals might be more likely to use spa facilities. Similarly, there is a strong positive relationship between 'spa' and 'foodcourt', as well as 'spa' and 'vrdeck', implying that those who frequent the spa may also spend time in these areas. Additionally, there is a moderate positive correlation between 'foodcourt' and 'vrdeck', indicating that individuals who spend time in one area are likely to spend time in the other. This lack of strong correlations can be considered a positive finding, as it suggests that the features carry independent information.
+In this analysis, there are no strong correlations present among the numerical columns, as indicated by a total of zero strong-correlated pairs and a false any_strong_correlation value. However, some notable correlations were identified that may provide insights into the data. For instance, a moderate positive correlation exists between the 'foodcourt' and 'vrdeck' usage, suggesting that guests who spend more time in one area might also be inclined to spend more time in the other. Similarly, there is a modest positive correlation between 'foodcourt', 'spa', and 'age'. This could imply that older guests may prefer spending their time at the food court or spa more than younger guests. Lastly, a weak positive correlation was found between 'vrdeck' and 'age', as well as between 'vrdeck' and 'spa', and between 'age' and 'spa'. These findings suggest that there might be some relationship among these variables, but it is not strong enough to raise concerns about multicollinearity. Overall, this is a positive finding, indicating that the features carry independent information.
 
 ![Correlations](plots/correlation_heatmap.png)
 
 ---
 
 ## 5. Categorical Features
-The dataset contains a total of 5 categorical columns, with one high cardinality column, 'cabin', which has an unusually large number of unique values (6560). High cardinality columns like this require special handling methods such as target encoding to prevent issues during machine learning model training. Two binary columns, 'vip' and 'cryosleep', are present in the dataset. The 'vip' column is heavily imbalanced with 97.7% of passengers not being VIP, while 'cryosleep' shows a more balanced distribution between those who did (35.8%) and did not (64.2%) use cryosleep. The remaining columns, 'homeplanet', 'destination', display dominant categories that suggest the majority of passengers are Earthlings traveling to TRAPPIST-1e.
+The dataset contains a total of 5 categorical columns, with one high cardinality column, 'cabin', which has 6560 unique values, indicating a need for special handling such as target encoding to avoid losing valuable information during preprocessing. The binary columns, 'vip' and 'cryosleep', show significant imbalance, with 'vip' having only 2.3% of passengers being VIP, while 'cryosleep' has 35.8% of passengers in cryosleep. In terms of homeplanet distribution, the majority of passengers are from Earth (54.2%), followed by Europa (25.1%) and Mars (20.7%). The destination column shows that most passengers are headed to TRAPPIST-1e (69.5%), with a smaller percentage going to 55 Cancri e (21.1%) and PSO J318.5-22 (9.4%). These distributions provide insights into the origin and destination of the passengers in this dataset.
 
-![Categorical]()
+**bar_vip**
+
+![bar_vip](plots/bar_vip_vs_transported.png)
+
+**bar_homeplanet**
+
+![bar_homeplanet](plots/bar_homeplanet_vs_transported.png)
+
+**bar_cryosleep**
+
+![bar_cryosleep](plots/bar_cryosleep_vs_transported.png)
+
+**bar_destination**
+
+![bar_destination](plots/bar_destination_vs_transported.png)
+
 
 ---
 
@@ -84,19 +143,19 @@ The target column 'transported' in the dataset exhibits a balanced distribution 
   ],
   "features": {
     "numerical_columns": [
-      "spa",
-      "age",
+      "roomservice",
       "foodcourt",
       "vrdeck",
-      "shoppingmall",
-      "roomservice"
+      "age",
+      "spa",
+      "shoppingmall"
     ],
     "categorical_columns": [
+      "cabin",
       "vip",
-      "cryosleep",
       "homeplanet",
-      "destination",
-      "cabin"
+      "cryosleep",
+      "destination"
     ],
     "column_dtypes": {
       "passengerid": "object",

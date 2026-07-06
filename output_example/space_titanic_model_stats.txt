@@ -1,29 +1,23 @@
-AI Model Usage � Space Titanic
-Generated: 2026-07-06 02:37:59
+AI Model Usage - Space Titanic
+Generated: 2026-07-06 17:53:23
 
 LLM (mistral:latest)
   Total calls........... 20
-  Total tokens.......... 13,711  (11,453 in / 2,258 out)
-  Total latency......... 862.18s
-  Avg latency/call...... 43.11s
+  Total tokens.......... 13,632  (11,544 in / 2,088 out)
+  Total latency......... 275.67s
+  Avg latency/call...... 13.78s
 
   By agent:
-    Data Profiler      2 calls      761 tokens     12.04s
-    Hypothesis Agent  11 calls    6,632 tokens    319.11s
-    Insight Agent      6 calls    4,915 tokens    449.06s
-    Reporting Agent    1 calls    1,403 tokens     81.97s
+    Data Profiler      2 calls      761 tokens      9.68s
+    Hypothesis Agent  11 calls    6,740 tokens    101.07s
+    Insight Agent      6 calls    4,831 tokens    156.64s
+    Reporting Agent    1 calls    1,300 tokens      8.28s
 
 VLM (qwen2.5vl:7b)
   Total calls........... 5
-  Total tokens.......... 6,555  (5,904 in / 651 out)
-  Total latency......... 398.67s
-  Avg latency/call...... 79.73s
+  Total tokens.......... 6,664  (5,901 in / 763 out)
+  Total latency......... 225.74s
+  Avg latency/call...... 45.15s
 
   By agent:
-    Hypothesis Agent   5 calls    6,555 tokens    398.67s
-
-
-
-
-
-
+    Hypothesis Agent   5 calls    6,664 tokens    225.74s

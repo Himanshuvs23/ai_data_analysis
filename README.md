@@ -1,6 +1,6 @@
 # AI Data Analyst Agent
 
-An AI-powered data analysis workflow that automatically profiles CSV datasets, performs exploratory data analysis (EDA), generates visualizations, and interprets statistical findings using local Large Language Models (LLMs) and Vision Language Models (VLMs) — producing professional Markdown and Jupyter Notebook reports with no external API calls.
+An AI-powered data analysis workflow that automatically profiles CSV datasets, performs exploratory data analysis (EDA), generates visualizations, and interprets statistical findings using local Large Language Models (LLMs) and Vision Language Models (VLMs), producing professional Markdown and Jupyter Notebook reports with no external API calls.
 
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue?logo=python&logoColor=white)
 ![LangGraph](https://img.shields.io/badge/orchestration-LangGraph-1C3C3C)
@@ -52,41 +52,41 @@ A complete example run is available in [`output_example/`](output_example/), gen
 
 ## Features
 
-- **Automated dataset profiling** — extracts dataset metadata, detects numerical/categorical feature types, and identifies sensitive and identifier columns using LLM-assisted classification.
+- **Automated dataset profiling** - extracts dataset metadata, detects numerical/categorical feature types, and identifies sensitive and identifier columns using LLM-assisted classification.
 
-- **Exploratory data analysis (EDA)** — performs descriptive statistics, missing value analysis, outlier detection, correlation analysis, and class imbalance assessment.
+- **Exploratory data analysis (EDA)** - performs descriptive statistics, missing value analysis, outlier detection, correlation analysis, and class imbalance assessment.
 
-- **Automatic visualization generation** — creates charts including histograms, box plots, bar charts, heatmaps, and target-wise visualizations.
+- **Automatic visualization generation** - creates charts including histograms, box plots, bar charts, heatmaps, and target-wise visualizations.
 
-- **LLM-powered insights** — converts statistical outputs into concise, human-readable insights and executive summaries using large language models.
+- **LLM-powered insights** - converts statistical outputs into concise, human-readable insights and executive summaries using large language models.
 
-- **Vision-based chart interpretation** — uses vision language models (VLMs) to analyze generated charts and validate analytical hypotheses.
+- **Vision-based chart interpretation** - uses vision language models (VLMs) to analyze generated charts and validate analytical hypotheses.
 
-- **Automated hypothesis generation and validation** — generates analytical hypotheses, selects suitable visualizations, and evaluates supporting evidence over multiple rounds.
+- **Automated hypothesis generation and validation** - generates analytical hypotheses, selects suitable visualizations, and evaluates supporting evidence over multiple rounds.
 
-- **LangGraph workflow orchestration** — coordinates deterministic analysis components and AI agents through a modular, stateful pipeline.
+- **LangGraph workflow orchestration** - coordinates deterministic analysis components and AI agents through a modular, stateful pipeline.
 
-- **Professional report generation** — exports complete analysis reports in both Markdown and Jupyter Notebook formats with embedded visualizations.
+- **Professional report generation** - exports complete analysis reports in both Markdown and Jupyter Notebook formats with embedded visualizations.
 
-- **AI model telemetry** — tracks token usage, latency, and per-agent call statistics for every report generation run.
+- **AI model telemetry** - tracks token usage, latency, and per-agent call statistics for every report generation run.
 
 
 ## Architecture
-AI Data Analyst is orchestrated as a LangGraph pipeline. Each node reads from a shared AnalysisState (a `TypedDict`) and returns only the state keys it produces — nodes never mutate or return the full state, which keeps the graph safe under LangGraph's fan-out/fan-in semantics.
+AI Data Analyst is orchestrated as a LangGraph pipeline. Each node reads from a shared AnalysisState (a `TypedDict`) and returns only the state keys it produces. Nodes never mutate or return the full state, which keeps the graph safe under LangGraph's fan-out/fan-in semantics.
 
 ![Architecture diagram](docs/architecture.svg)
 
 Pipeline stages:
-1. Load — reads the input CSV and column descriptions file into state.
-2. Generate Metadata — classifies columns as numerical or categorical, and uses LLM calls (with column names and descriptions as context) to detect sensitive/PII columns and identifier columns, excluding both from downstream analysis.
-3. Analysis — runs deterministic profiling: missing values, outliers, correlations, class balance, and numerical/categorical summaries.
-4. Visualization — generates deterministic charts from the analysis output.
+1. Load - reads the input CSV and column descriptions file into state.
+2. Generate Metadata - classifies columns as numerical or categorical, and uses LLM calls (with column names and descriptions as context) to detect sensitive/PII columns and identifier columns, excluding both from downstream analysis.
+3. Analysis - runs deterministic profiling: missing values, outliers, correlations, class balance, and numerical/categorical summaries.
+4. Visualization - generates deterministic charts from the analysis output.
 5. Insight Report and Hypothesis Testing run in parallel, both consuming the same upstream state:
 - Insight Report summarizes the deterministic analysis into a written narrative using a local text LLM.
 - Hypothesis Testing runs a fixed number of rounds, each generating candidate hypotheses, building chart specs, rendering charts, and validating them against the rendered charts using a local vision LLM. Results accumulate across rounds.
-6. Report Generation — assembles the final Markdown and Jupyter notebook report from all upstream state.
+6. Report Generation - assembles the final Markdown and Jupyter notebook report from all upstream state.
 
-All models run locally (Mistral:latest for text, Qwen2.5-VL:7B for vision) — no external API calls are made during analysis.
+All models run locally (Mistral:latest for text, Qwen2.5-VL:7B for vision). No external API calls are made during analysis.
 
 > **Design Philosophy**
 >
@@ -126,16 +126,20 @@ AI-Data-Analyst/
 │   └── models.py
 │
 ├── tools/
-│   ├── profiling_tools.py
 │   ├── analysis_tools.py
-│   ├── visualization_tools.py
-│   └── reporting_tools.py
+│   ├── notebook_tools.py
+│   ├── profiling_tools.py
+│   ├── report_tools.py
+│   ├── telemetry_tools.py
+│   └── visualization_tools.py
 │
-├── prompts/
-├── schemas/
 ├── config/
 ├── data/
+├── docs/
+├── output_example/
 ├── outputs/
+├── prompts/
+├── schemas/
 ├── tests/
 │
 ├── LICENSE
@@ -144,6 +148,8 @@ AI-Data-Analyst/
 └── README.md
 ```
 
+> **Note:** Some folders shown above (e.g. `data/`, `outputs/`) may be empty or excluded from version control via `.gitignore`. They represent expected structure, not necessarily committed contents.
+
 ## AI Model Statistics
 
 Every run generates a plain-text usage summary alongside the report, showing token usage, call counts, and latency for each AI model, broken down by the agent that invoked it.
@@ -151,29 +157,29 @@ Every run generates a plain-text usage summary alongside the report, showing tok
 **Example output (`Space_Titanic_model_stats.txt`):**
 
 ```
-AI Model Usage — Space Titanic
-Generated: 2026-07-06 02:16:49
+AI Model Usage - Space Titanic
+Generated: 2026-07-06 17:53:23
 
 LLM (mistral:latest)
   Total calls........... 20
-  Total tokens.......... 13,461  (11,472 in / 1,989 out)
-  Total latency......... 283.30s
-  Avg latency/call...... 14.16s
+  Total tokens.......... 13,632  (11,544 in / 2,088 out)
+  Total latency......... 275.67s
+  Avg latency/call...... 13.78s
 
   By agent:
-    Data Profiler        2 calls      761 tokens      1.39s
-    Hypothesis Agent    11 calls    6,648 tokens     82.55s
-    Insight Agent        6 calls    4,778 tokens    135.30s
-    Reporting Agent      1 calls    1,274 tokens     64.07s
+    Data Profiler      2 calls      761 tokens      9.68s
+    Hypothesis Agent  11 calls    6,740 tokens    101.07s
+    Insight Agent      6 calls    4,831 tokens    156.64s
+    Reporting Agent    1 calls    1,300 tokens      8.28s
 
 VLM (qwen2.5vl:7b)
   Total calls........... 5
-  Total tokens.......... 6,622  (5,864 in / 758 out)
-  Total latency......... 247.16s
-  Avg latency/call...... 49.43s
+  Total tokens.......... 6,664  (5,901 in / 763 out)
+  Total latency......... 225.74s
+  Avg latency/call...... 45.15s
 
   By agent:
-    Hypothesis Agent     5 calls    6,622 tokens    247.16s
+    Hypothesis Agent   5 calls    6,664 tokens    225.74s
 ```
 
 ## Installation

@@ -45,7 +45,7 @@ def generate_chart(
                 target = df[col2],
                 x_label = col2,
                 y_label = col1,
-                title = f"Boxplot — {col1} by {col2}",
+                title = f"Boxplot - {col1} by {col2}",
                 output_dir = output_dir,
                 file_name = f"box_{col1}_vs_target",
                 log_scale = False
@@ -58,7 +58,7 @@ def generate_chart(
                 y_label = "Proportion",
                 title = f"{col1} by {col2}",
                 output_dir = output_dir,
-                file_name = f"staked_{col1}_vs_target",
+                file_name = f"stacked_{col1}_vs_target",
             )
 
     elif chart_type == "crosstab":
@@ -139,7 +139,7 @@ def deterministic_charts(
         labels = list(dist.keys()),
         x_label = "Class",
         y_label = "Proportion",
-        title = f"Class Balance — {target}",
+        title = f"Class Balance - {target}",
         output_dir = output_dir,
         file_name = "class_balance"
     )
@@ -158,7 +158,7 @@ def deterministic_charts(
                 target = df[target],
                 x_label = target,
                 y_label = col,
-                title = f"Boxplot — {col} by {target}",
+                title = f"Boxplot - {col} by {target}",
                 output_dir = output_dir,
                 file_name = f"box_{col}_vs_{target}",
                 log_scale = use_log
@@ -187,7 +187,7 @@ def deterministic_charts(
                 labels = list(dist.keys()),
                 x_label = col,
                 y_label = "Proportion",
-                title = f"Distribution — {col}",
+                title = f"Distribution - {col}",
                 output_dir = output_dir,
                 file_name = f"bar_{col}_vs_{target}",
             )

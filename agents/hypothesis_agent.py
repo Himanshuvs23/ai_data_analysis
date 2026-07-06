@@ -23,7 +23,7 @@ from prompts.hypothesis_prompt import (
 )
 
 # Import tools
-from tools.reporting_tools import image_to_base64
+from tools.notebook_tools import image_to_base64
 
 # Import global constants
 from config.settings import HYPOTHESIS_RETRIES

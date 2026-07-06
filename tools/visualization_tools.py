@@ -98,7 +98,7 @@ def plot_histogram(
 
     plt.xlabel(col_name)
     plt.ylabel("Count")
-    plt.title(f"Distribution — {col_name}")
+    plt.title(f"Distribution - {col_name}")
     plt.xticks(bins, rotation = 45)
     plt.tight_layout()
 
