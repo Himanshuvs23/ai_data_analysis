@@ -253,13 +253,13 @@ Report saved to: outputs/my_dataset_report.md
 
 The current implementation focuses on automated exploratory data analysis and report generation. Potential future enhancements include:
 
-- **Dynamic Workflow Routing** – Extend the LangGraph workflow with conditional routing so agents can decide which analyses and visualizations to execute based on dataset characteristics.
+- **Dynamic Workflow Routing** - Extend the LangGraph workflow with conditional routing so agents can decide which analyses and visualizations to execute based on dataset characteristics.
 
-- **Adaptive Hypothesis Generation** – Replace the current fixed-round hypothesis loop with a stopping condition based on hypothesis quality, and prune weak hypotheses across rounds instead of accumulating all of them.
+- **Adaptive Hypothesis Generation** - Replace the current fixed-round hypothesis loop with a stopping condition based on hypothesis quality, and prune weak hypotheses across rounds instead of accumulating all of them.
 
-- **Automated Machine Learning (AutoML)** – Expand the workflow to perform feature engineering, model training, evaluation, and comparison, transforming the system from an AI Data Analyst into an AI Data Scientist.
+- **Automated Machine Learning (AutoML)** - Expand the workflow to perform feature engineering, model training, evaluation, and comparison, transforming the system from an AI Data Analyst into an AI Data Scientist.
 
-- **Interactive Dashboard** – Develop a Streamlit-based interface for dataset upload, analysis configuration, and interactive report visualization.
+- **Interactive Dashboard** - Develop a Streamlit-based interface for dataset upload, analysis configuration, and interactive report visualization.
 
 ## License
 
