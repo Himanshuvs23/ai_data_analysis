@@ -47,67 +47,69 @@ def save_markdown(
     charts = state["deterministic_charts"]
     report_folder = state["report_folder"]
 
-    report = f"""
-    # AI Data Analyst Report \n
-    **Dataset:** {dataset_name}
-    **Generated:** {datetime.now().strftime("%Y-%m-%d %H:%M")}
-    **Rows:** {metadata["number_of_rows"]} | **Columns:** {metadata["number_of_columns"]}
+    report_lines = [
+        "# AI Data Analyst Report",
+        "",
+        f"**Dataset:** {dataset_name}",
+        f"**Generated:** {datetime.now().strftime('%Y-%m-%d %H:%M')}",
+        f"**Rows:** {metadata['number_of_rows']} | **Columns:** {metadata['number_of_columns']}",
+        "",
+        "---",
+        "",
+        "## Executive Summary",
+        executive_summary.content,
+        "",
+        "---",
+        "",
+        "## 1. Missing Values",
+        insight_report.missing.response,
+        "",
+        f"![Missing Values]({charts.get('missing', '')})",
+        "",
+        "---",
+        "",
+        "## 2. Outliers",
+        insight_report.outliers.response,
+        "",
+        f"![Outliers]({charts.get('outliers', '')})",
+        "",
+        "---",
+        "",
+        "## 3. Distributions",
+        insight_report.distributions.response,
+        "",
+        f"![Distributions]({charts.get('distributions', '')})",
+        "",
+        "---",
+        "",
+        "## 4. Correlations",
+        insight_report.correlations.response,
+        "",
+        f"![Correlations]({charts.get('correlation', '')})",
+        "",
+        "---",
+        "",
+        "## 5. Categorical Features",
+        insight_report.categorical.response,
+        "",
+        f"![Categorical]({charts.get('categoricals', '')})",
+        "",
+        "---",
+        "",
+        "## 6. Class Balance",
+        insight_report.class_balance.response,
+        "",
+        f"![Class Balance]({charts.get('class_balance', '')})",
+        "",
+        "---",
+        "",
+        "## Appendix — Dataset Profile",
+        "```json",
+        json.dumps(metadata, indent = 2),
+        "```",
+    ]
 
-    ---
-
-    ## Executive Summary
-    {executive_summary.content}
-
-    ---
-
-    ## 1. Missing Values
-    {insight_report.missing.response}
-
-    ![Missing Values]({charts.get("missing", "")})
-
-    ---
-
-    ## 2. Outliers
-    {insight_report.outliers.response}
-
-    ![Outliers]({charts.get("outliers", "")})
-
-    ---
-
-    ## 3. Distributions
-    {insight_report.distributions.response}
-
-    ![Distributions]({charts.get("distributions", "")})
-
-    ---
-
-    ## 4. Correlations
-    {insight_report.correlations.response}
-
-    ![Correlations]({charts.get("correlation", "")})
-
-    ---
-
-    ## 5. Categorical Features
-    {insight_report.categorical.response}
-
-    ![Categorical]({charts.get("categoricals", "")})
-
-    ---
-
-    ## 6. Class Balance
-    {insight_report.class_balance.response}
-
-    ![Class Balance]({charts.get("class_balance", "")})
-
-    ---
-
-    ## Appendix — Dataset Profile
-    ```json
-    {json.dumps(metadata, indent = 2)}
-    ```
-    """
-
+    report = "\n".join(report_lines)
     path = Path(report_folder) / f"{dataset_name.lower().strip().replace(' ', '_')}_report.md"
     path.parent.mkdir(parents = True, exist_ok = True)
     path.write_text(report, encoding = "utf-8")
