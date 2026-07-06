@@ -1,0 +1,29 @@
+# Virtual environments
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment variables
+.env
+
+# Outputs
+outputs/reports/*
+outputs/logs/*
+
+# Data
+data/raw/*
+data/processed/*
+data/samples/*
+
+# VS Code
+.vscode/
+
+# Remove Project file
+project_structure.txt

@@ -1,0 +1,26 @@
+# Correlation Threshold
+STRONG_CORRELATION_THRESHOLD = 0.5
+NOTABLE_CORRELATION_THRESHOLD = 0.1
+
+# Cardinality Threshold
+HIGH_CARDINALITY_THRESHOLD = 20
+
+# Outlier Severity Thresholds
+HIGH_OUTLIER_THRESHOLD = 20.0
+MEDIUM_OUTLIER_THRESHOLD = 10.0
+
+# Missing Value Severity Thresholds
+HIGH_MISSING_THRESHOLD = 20.0
+MEDIUM_MISSING_THRESHOLD = 5.0
+
+# Class Imbalance Thresholds
+MODERATE_IMBALANCE_THRESHOLD = 5.0
+HIGH_IMBALANCE_THRESHOLD = 15.0
+
+# Model
+LLM_MODEL = "mistral:latest"
+VLM_MODEL = "qwen2.5vl:7b"
+TEMPERATURE = 0
+
+# Hypothesis Retries
+HYPOTHESIS_RETRIES = 1

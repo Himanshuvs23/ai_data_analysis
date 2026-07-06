@@ -1,0 +1,60 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="Es3qFa54hYA9U4sueCzi">
+    <mxGraphModel dx="1414" dy="743" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ONNas-kPfV8pEo1bKGNe-3" edge="1" parent="1" source="ONNas-kPfV8pEo1bKGNe-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="ONNas-kPfV8pEo1bKGNe-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ONNas-kPfV8pEo1bKGNe-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a20025;fontColor=#ffffff;strokeColor=light-dark(#6F0000,#000000);" value="&lt;b&gt;Load&lt;/b&gt;&lt;br&gt;Read CSV and descriptions" vertex="1">
+          <mxGeometry height="40" width="200" x="600" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="ONNas-kPfV8pEo1bKGNe-5" edge="1" parent="1" source="ONNas-kPfV8pEo1bKGNe-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="ONNas-kPfV8pEo1bKGNe-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ONNas-kPfV8pEo1bKGNe-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#1BA1E2,#87C4C4);fontColor=#ffffff;strokeColor=light-dark(#006EAF,#000000);" value="&lt;b&gt;Generate Metadata&lt;/b&gt;&lt;br&gt;Column typing and sensitivity" vertex="1">
+          <mxGeometry height="40" width="200" x="600" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="ONNas-kPfV8pEo1bKGNe-7" edge="1" parent="1" source="ONNas-kPfV8pEo1bKGNe-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="ONNas-kPfV8pEo1bKGNe-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ONNas-kPfV8pEo1bKGNe-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#1BA1E2,#87C4C4);fontColor=#ffffff;strokeColor=light-dark(#006EAF,#000000);" value="&lt;b&gt;Analysis&lt;/b&gt;&lt;br&gt;Missing %, Outliers, Correlations" vertex="1">
+          <mxGeometry height="40" width="200" x="600" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="ONNas-kPfV8pEo1bKGNe-10" edge="1" parent="1" source="ONNas-kPfV8pEo1bKGNe-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="ONNas-kPfV8pEo1bKGNe-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="540" y="380" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ONNas-kPfV8pEo1bKGNe-15" edge="1" parent="1" source="ONNas-kPfV8pEo1bKGNe-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="ONNas-kPfV8pEo1bKGNe-9">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="860" y="380" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ONNas-kPfV8pEo1bKGNe-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#1BA1E2,#87C4C4);fontColor=#ffffff;strokeColor=light-dark(#006EAF,#000000);" value="&lt;b&gt;Visualization&lt;/b&gt;&lt;br&gt;Deterministic charts" vertex="1">
+          <mxGeometry height="40" width="200" x="600" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="ONNas-kPfV8pEo1bKGNe-13" edge="1" parent="1" source="ONNas-kPfV8pEo1bKGNe-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="ONNas-kPfV8pEo1bKGNe-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ONNas-kPfV8pEo1bKGNe-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#A20025,#FF9933);fontColor=#ffffff;strokeColor=light-dark(#6F0000,#000000);" value="&lt;b&gt;Insight Report&lt;/b&gt;&lt;br&gt;LLM written summary" vertex="1">
+          <mxGeometry height="40" width="200" x="440" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="ONNas-kPfV8pEo1bKGNe-14" edge="1" parent="1" source="ONNas-kPfV8pEo1bKGNe-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="ONNas-kPfV8pEo1bKGNe-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ONNas-kPfV8pEo1bKGNe-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#1BA1E2,#FF9933);fontColor=#ffffff;strokeColor=light-dark(#006EAF,#000000);" value="&lt;b&gt;Hypothesis Testing&lt;/b&gt;&lt;br&gt;Vision driven testing loop" vertex="1">
+          <mxGeometry height="40" width="200" x="760" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="ONNas-kPfV8pEo1bKGNe-12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#1BA1E2,#CCCCFF);fontColor=#ffffff;strokeColor=light-dark(#006EAF,#000000);" value="&lt;b&gt;Report Generation&lt;/b&gt;&lt;br&gt;Assemble Markdown/Notebook" vertex="1">
+          <mxGeometry height="40" width="200" x="600" y="560" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
