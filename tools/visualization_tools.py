@@ -173,6 +173,8 @@ def plot_box_by_target(
 
     if log_scale:
         feature = feature.fillna(0) + 1
+        y_label = f"{y_label} (log scale)"
+        title = f"{title} (Log Scale)"
 
     classes = sorted(target.unique())
     data = [feature[target == cls] for cls in classes]

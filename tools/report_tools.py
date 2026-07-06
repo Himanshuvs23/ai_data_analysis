@@ -13,7 +13,7 @@ def build_chart_section(
 ) -> List[str]:
     lines = []
     for chart_name, chart_path in charts_dict.items():
-        lines.append(f"**{chart_name}**")
+        lines.append(f"**{chart_name.upper()}**")
         lines.append("")
         lines.append(f"![{chart_name}]({chart_path})")
         lines.append("")
