@@ -50,8 +50,11 @@ def save_markdown(
     report_lines = [
         "# AI Data Analyst Report",
         "",
+        ""
         f"**Dataset:** {dataset_name}",
+        ""
         f"**Generated:** {datetime.now().strftime('%Y-%m-%d %H:%M')}",
+        ""
         f"**Rows:** {metadata['number_of_rows']} | **Columns:** {metadata['number_of_columns']}",
         "",
         "---",
