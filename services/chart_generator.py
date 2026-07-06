@@ -86,6 +86,10 @@ def deterministic_charts(
     # Check if directory exists
     Path(output_dir).mkdir(parents = True, exist_ok = True)
 
+    # Create the plot folder
+    plots_dir = Path(output_dir) / "plots"
+    plots_dir.mkdir(parents = True, exist_ok = True)
+
     charts = {}
 
     numerical = metadata["features"]["numerical_columns"]
