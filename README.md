@@ -253,6 +253,10 @@ Report saved to: {
 }
 ```
 
+## Limitations
+
+- Box plots can occasionally appear blank for features with very large value ranges or extreme outliers, as the interquartile range becomes compressed on the plot. Adaptive scaling and alternative visualizations are planned to improve readability.
+
 ## Future Work
 
 The current implementation focuses on automated exploratory data analysis and report generation. Potential future enhancements include:
