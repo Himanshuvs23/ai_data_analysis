@@ -1,0 +1,6 @@
+**1.DATA Injection node
+make the user can able to load all time of dataset such as(csv,excel,
+sheet , pdf ,powerBI dashboard , XLSX ,XLS  ,JSON , Parquet SQL  PostgreSQL )
+
+**2.DATA PROFILER  
+  Schema  Data types Missing values  Duplicates Outliers             

@@ -18,8 +18,7 @@ An AI-powered data analysis workflow that automatically profiles CSV datasets, p
 - [Installation](#installation)
 - [Usage](#usage)
 - [Future Work](#future-work)
-- [License](#license)
-- [Author](#author)
+
 
 ## Highlights
 
@@ -148,13 +147,9 @@ AI-Data-Analyst/
 └── README.md
 ```
 
-> **Note:** Some folders shown above (e.g. `data/`, `outputs/`) may be empty or excluded from version control via `.gitignore`. They represent expected structure, not necessarily committed contents.
-
 ## AI Model Statistics
 
 Every run generates a plain-text usage summary alongside the report, showing token usage, call counts, and latency for each AI model, broken down by the agent that invoked it.
-
-**Example output (`Space_Titanic_model_stats.txt`):**
 
 ```
 AI Model Usage - Space Titanic
@@ -191,7 +186,6 @@ VLM (qwen2.5vl:7b)
 **1. Clone the repository**
 
 ```bash
-git clone https://github.com/gaurav-S8/ai-data-analyst.git
 cd ai-data-analyst
 ```
 
@@ -204,8 +198,8 @@ pip install -e .
 **3. Pull the required local models via Ollama**
 
 ```bash
-ollama pull mistral
-ollama pull qwen2.5vl:7b
+ollama pull qwen3.5:4b mlx
+ollama pull qwen3.5:4b mlx
 ```
 
 ## Usage
@@ -213,7 +207,7 @@ ollama pull qwen2.5vl:7b
 Run the pipeline from the command line, pointing it at your dataset and a JSON file describing each column:
 
 ```bash
-python main.py \
+python main.py \       
   --dataset-path data/my_dataset.csv \
   --column-descriptions data/my_dataset_columns.json \
   --target-column target \
@@ -268,15 +262,3 @@ The current implementation focuses on automated exploratory data analysis and re
 - **Automated Machine Learning (AutoML)** - Expand the workflow to perform feature engineering, model training, evaluation, and comparison, transforming the system from an AI Data Analyst into an AI Data Scientist.
 
 - **Interactive Dashboard** - Develop a Streamlit-based interface for dataset upload, analysis configuration, and interactive report visualization.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## Author
-
-**Gaurav Singariya**
-
-- Email: gaurav.singariya.26@gmail.com
-- LinkedIn: [linkedin.com/in/gauravsingariya](https://www.linkedin.com/in/gauravsingariya/)
-- GitHub: [github.com/gaurav-S8](https://github.com/gaurav-S8)

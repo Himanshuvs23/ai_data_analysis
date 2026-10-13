@@ -1,0 +1,14 @@
+{
+  "Index": "Unique row index",
+  "Customer Id": "Unique customer identifier",
+  "First Name": "Customer first name",
+  "Last Name": "Customer last name",
+  "Company": "Customer company name",
+  "City": "Customer city",
+  "Country": "Customer country",
+  "Phone 1": "Primary customer phone number",
+  "Phone 2": "Secondary customer phone number",
+  "Email": "Customer email address",
+  "Subscription Date": "Date when the customer subscribed",
+  "Website": "Customer/company website"
+}

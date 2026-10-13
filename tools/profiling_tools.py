@@ -14,25 +14,93 @@ from prompts.analysis_prompt import (
     identifier_columns_prompt
 )
 
+# def detect_sensitive_columns(python -c "import pandas as pd; print(pd.read_csv('data/customers-1000.csv').columns.tolist())"
+#     column_names: List[str],
+#     column_descriptions: Dict
+# ) -> StringL
+#         schema = StringList,
+#         prompt = sensitive_columns_prompt(column_names, column_descriptions),
+#         caller = "Data Profiler"
+#     )
+
+# def detect_identifier_columns(
+#     column_names: List[str],
+#     column_descriptions: Dict
+# ) -> StringList:
+#     return planner_llm.invoke_structured(
+#         schema = StringList,
+#         prompt = identifier_columns_prompt(column_names, column_descriptions),
+#         caller = "Data Profiler"
+#     )
+
 def detect_sensitive_columns(
     column_names: List[str],
     column_descriptions: Dict
 ) -> StringList:
-    return planner_llm.invoke_structured(
-        schema = StringList,
-        prompt = sensitive_columns_prompt(column_names, column_descriptions),
-        caller = "Data Profiler"
-    )
+    """Identify likely PII using column names and descriptions."""
+    sensitive_terms = {
+        "name", "first_name", "last_name", "full_name",
+        "email", "phone", "mobile", "address",
+        "date_of_birth", "birth_date", "dob",
+        "ssn", "salary", "bank_account", "credit_card",
+        "passport", "medical_record", "latitude", "longitude",
+        "ip_address"
+    }
+
+    matches = []
+
+    for column in column_names:
+        normalized = column.lower().strip().replace(" ", "_")
+        description = str(
+            column_descriptions.get(column, "")
+        ).lower()
+
+        name_match = any(
+            term in normalized
+            for term in sensitive_terms
+        )
+
+        description_match = any(
+            term.replace("_", " ") in description
+            for term in sensitive_terms
+        )
+
+        if name_match or description_match:
+            matches.append(column)
+
+    print(f"[RULES] Sensitive columns: {matches}", flush=True)
+    return StringList(items=matches)
+
 
 def detect_identifier_columns(
     column_names: List[str],
     column_descriptions: Dict
 ) -> StringList:
-    return planner_llm.invoke_structured(
-        schema = StringList,
-        prompt = identifier_columns_prompt(column_names, column_descriptions),
-        caller = "Data Profiler"
-    )
+    """Identify likely primary keys and record identifiers."""
+    matches = []
+
+    for column in column_names:
+        normalized = column.lower().strip().replace(" ", "_")
+        description = str(
+            column_descriptions.get(column, "")
+        ).lower()
+
+        is_identifier = (
+            normalized == "id"
+            or normalized == "index"
+            or normalized.endswith("_id")
+            or normalized.endswith("_uuid")
+            or "unique identifier" in description
+            or "primary key" in description
+            or "record identifier" in description
+        )
+
+        if is_identifier:
+            matches.append(column)
+
+    print(f"[RULES] Identifier columns: {matches}", flush=True)
+    return StringList(items=matches)
+
 
 def extract_metadata(
     df: pd.DataFrame,

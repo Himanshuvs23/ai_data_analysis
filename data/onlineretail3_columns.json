@@ -1,0 +1,10 @@
+{
+  "InvoiceNo": "Unique invoice number; values beginning with C typically indicate cancellations",
+  "StockCode": "Product identifier",
+  "Description": "Product description",
+  "Quantity": "Number of units in the transaction; negative values may indicate returns",
+  "InvoiceDate": "Date and time of the transaction",
+  "UnitPrice": "Price per unit in pounds sterling",
+  "CustomerID": "Customer identifier; some records have no customer ID",
+  "Country": "Country associated with the transaction"
+}

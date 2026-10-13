@@ -18,8 +18,8 @@ MODERATE_IMBALANCE_THRESHOLD = 5.0
 HIGH_IMBALANCE_THRESHOLD = 15.0
 
 # Model
-LLM_MODEL = "mistral:latest"
-VLM_MODEL = "qwen2.5vl:7b"
+LLM_MODEL = "qwen3.5:4b-mlx"
+VLM_MODEL = "qwen3.5:4b-mlx"
 TEMPERATURE = 0
 
 # Hypothesis Retries

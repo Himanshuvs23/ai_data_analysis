@@ -1,4 +1,5 @@
 # Import Schemas
+from schemas import state
 from schemas.state import AnalysisState
 
 # Import Tools
@@ -35,11 +36,22 @@ def load_dataset_node(
         "df": df,
         "column_descriptions": column_descriptions
     }
-
-def metadata_node(
-    state: AnalysisState
-):
+#gpt code
+def metadata_node(state: AnalysisState):
     df = state["df"]
+
+    # Normalize the target to match the DataFrame columns
+    target = state["target"].strip().lower().replace(" ", "_")
+
+    print("[DEBUG] Actual columns:", df.columns.tolist(), flush=True)
+    print("[DEBUG] Normalized target:", target, flush=True)
+
+    # Validate target column
+    if target not in df.columns:
+        raise ValueError(
+            f"Target column '{target}' not found. "
+            f"Available columns: {df.columns.tolist()}"
+        )
 
     sensitive_columns = detect_sensitive_columns(
         df.columns.tolist(),
@@ -51,43 +63,94 @@ def metadata_node(
         state["column_descriptions"]
     ).items
 
-    numerical_columns = list(
-        set(
-            df.select_dtypes(include = ["number"]).columns
-        )
-        - set(
-            sensitive_columns
-            + identifier_columns
-            + [state["target"]]
-        )
+    excluded_columns = set(
+        sensitive_columns + identifier_columns + [target]
     )
 
-    categorical_columns = list(
-        set(
-            df.select_dtypes(
-                include = ["object", "category"]
-            ).columns
-        )
-        - set(
-            sensitive_columns
-            + identifier_columns
-            + [state["target"]]
-        )
-    )
+    numerical_columns = [
+        col for col in df.select_dtypes(include=["number"]).columns
+        if col not in excluded_columns
+    ]
+
+    categorical_columns = [
+        col for col in df.select_dtypes(
+            include=["object", "category"]
+        ).columns
+        if col not in excluded_columns
+    ]
 
     metadata = extract_metadata(
         df,
         numerical_columns,
         categorical_columns,
-        state["target"]
+        target
     )
 
     metadata["dataset_name"] = state["dataset_name"]
     metadata["sensitive_columns"] = sensitive_columns
     metadata["identifier_columns"] = identifier_columns
-    return {
-        "metadata": metadata
-    }
+
+    print("[DONE] Metadata extracted successfully.", flush=True)
+
+    return {"metadata": metadata}
+
+
+
+# def metadata_node(
+#     state: AnalysisState
+# ):
+#     df = state["df"]
+#     target = state["target"].strip().lower().replace(" ", "_")
+#     print("[DEBUG] Actual columns:", df.columns.tolist(), flush=True)
+#     print("[DEBUG] Normalized target:", target, flush=True)    
+
+#     sensitive_columns = detect_sensitive_columns(
+#         df.columns.tolist(),
+#         state["column_descriptions"]
+#     ).items
+
+#     identifier_columns = detect_identifier_columns(
+#         df.columns.tolist(),
+#         state["column_descriptions"]
+#     ).items
+
+#     numerical_columns = list(
+#         set(
+#             df.select_dtypes(include = ["number"]).columns
+#         )
+#         - set(
+#             sensitive_columns
+#             + identifier_columns
+#             + [state["target"]]
+#         )
+#     )
+
+#     categorical_columns = list(
+#         set(
+#             df.select_dtypes(
+#                 include = ["object", "category"]
+#             ).columns
+#         )
+#         - set(
+#             sensitive_columns
+#             + identifier_columns
+#             + [state["target"]]
+#         )
+#     )
+
+#     metadata = extract_metadata(
+#         df,
+#         numerical_columns,
+#         categorical_columns,
+#         state["target"]
+#     )
+
+#     metadata["dataset_name"] = state["dataset_name"]
+#     metadata["sensitive_columns"] = sensitive_columns
+#     metadata["identifier_columns"] = identifier_columns
+#     return {
+#         "metadata": metadata
+#     }
 
 def analysis_node(
     state: AnalysisState
@@ -101,7 +164,9 @@ def analysis_node(
         "missing": get_missing_summary(df),
         "outliers": get_outlier_summary(df, numerical_columns),
         "correlation": get_correlation_summary(df, numerical_columns),
-        "class_balance": get_class_balance(df, state["target"]),
+  #     "class_balance": get_class_balance(df,  state["target"])
+  #gpt code
+        "class_balance": get_class_balance(df,  state["target"].strip().lower().replace(" ", "_")),
         "numerical_distributions": get_numerical_summary(df, numerical_columns),
         "categorical_summary": get_categorical_summary(df, categorical_columns),
     }
